@@ -5,12 +5,7 @@ class Receiver:
         self.commander = Commander()
         pass
 
-    def passProcessing(self):
-        #setFrame()
-        #getFrame()
-        pass
-
     def registVideo(self, path):
         pass
-
+#some part removing
     

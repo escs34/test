@@ -15,14 +15,10 @@ class JustShow:
             print("...................................................................")
             print("1. input the video")
             print("2. show next first image")
-            print("3. show next hundread th image")
-            print("4. show next thousand th image")
-            print("0. end")
             print("...................................................................")
             selectNumber = int(input("Input Menu Number. "))
 
             if selectNumber == 0:
-                print("end. bye.")
                 break
             elif selectNumber == 1:
                 self.inputVideo()
