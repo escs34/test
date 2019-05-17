@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="stuff, to, help, search, engines, not" name="keywords">
+<meta content="What this page is about." name="description">
+<meta content="Display Webcam Stream" name="title">
+    <title></title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+
+    </style>
+    <script src="jquery-3.1.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            <!-- (1) -->
+            // 변수를 선언합니다.
+            var color = 'black';
+            var width = 5;
+            var isDown = false;
+            var newPoint, oldPoint;
+            // 소켓을 연결합니다.
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+            // 마우스 이벤트를 연결합니다.
+            $(canvas).mousedown(function (event) {
+                isDown = true;
+                oldPoint = {
+                    x: event.pageX - $(this).position().left,
+                    y: event.pageY - $(this).position().top
+                };
+            });
+            $(canvas).mousemove(function (event) {
+                if (!isDown) { return; }
+                newPoint = {
+                    x: event.pageX - $(this).position().left,
+                    y: event.pageY - $(this).position().top
+                };
+                context.beginPath();
+                context.lineWidth = width;
+                context.strokeStyle = color;
+                context.moveTo(oldPoint.x, oldPoint.y);
+                context.lineTo(newPoint.x, newPoint.y);
+                context.stroke();
+                oldPoint = newPoint;
+            });
+            $(canvas).mouseup(function (event) {
+                isDown = false;
+                oldPoint = {
+                    x: event.pageX - $(this).position().left,
+                    y: event.pageY - $(this).position().top
+                };
+            });
+            // 입력 양식 이벤트를 연결합니다.
+            $('#pen').click(function () {
+                width = 1;
+                color = 'black';
+                $('#width').val(width);
+            });
+            $('#eraser').click(function () {
+                width = 10;
+                color = 'white';
+                $('#width').val(width);
+            });
+            $('#width').change(function () {
+                width = $(this).val()
+            });
+
+
+            $('#oracle1').click(function () {
+                $('#ans1').val('oracle1 버튼이 눌렸습니다.');
+            });
+
+
+            <!-- (2) -->
+            $('#capture').click(function () {
+		var player = document.getElementById('videoElement'); 
+		var snapshotCanvas = document.getElementById('canvasC');
+
+		var context = snapshotCanvas.getContext('2d');
+
+		// Draw the video frame to the canvas.
+		context.drawImage(player, 0, 0, snapshotCanvas.width, 
+		snapshotCanvas.height);
+
+
+            });
+
+
+            $('#oracle2').click(function () {
+                $('#ans2').val('oracle2 버튼이 눌렸습니다.');
+            });
+
+
+
+
+            <!-- (3) -->
+
+            $('#oracle3').click(function () {
+                $('#ans3').val('oracle3 버튼이 눌렸습니다.');
+            });
+
+
+
+
+
+
+
+
+        });
+    </script>
+</head>
+<body>
+    <h1>lab11 (1)번</h1>
+    <button id="pen">펜</button>
+    <button id="eraser">지우개</button>
+    <input id="width" type="range" min="1" max="10" value="1" />
+    <br />
+    <canvas id="canvas" width="280" height="280"></canvas>
+
+    <br />
+    <button id="oracle1">oracle</button>
+    <br />
+    <input id="ans1" type='text' disabled="disabled" value="(1)여기에 예측값이 나옵니다.">
+    <br />
+    <br />
+
+
+
+
+    <h1>lab11 (2)번</h1>
+    <!--  <textarea id="output" disabled="disabled" cols="10" rows="2">여기에 예측값이 나옵니다.</textarea>  -->
+
+    <canvas id="canvasV" width="280" height="280">
+        <video autoplay="true" id="videoElement"></video>
+    </canvas>
+    <script src="./video.js"></script>
+
+    <canvas id="canvasC" width="280" height="280"></canvas>
+    <br />
+
+
+    <button id="capture">capture</button>
+
+
+
+
+
+
+
+
+
+
+    <button id="oracle2">oracle</button>
+
+    <br />
+    <input id="ans2" type='text' disabled="disabled" value="(2)여기에 예측값이 나옵니다.">
+    <br />
+    <br />
+
+
+
+
+
+    <h1>lab11 (3)번</h1>
+
+     	   <input type='file' id="imgInp" />
+    	   <br />
+
+    	   <canvas id="canvasIMG" width="280" height="280">
+     	       <img id="blah" src="#" alt="your image" />
+    	   </canvas>
+
+
+ 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+
+	function make_base()
+	{
+     	   var canvas = document.getElementById('canvasIMG');
+           ctx = canvas.getContext('2d');
+            var img1 = new Image();
+
+            img1.onload = function () {
+                ctx.drawImage(img1, 0, 0, canvas.width, canvas.height);
+
+            };
+
+	img1.src =  document.getElementById("blah").src;
+
+
+ 	 };
+
+   	 function readURL(input) {
+
+   	 	if (input.files && input.files[0]) {
+   	   var reader = new FileReader();
+  	    reader.onload = function(e) {
+      	 	 $('#blah').attr('src', e.target.result);
+		make_base();
+     		}
+   	   reader.readAsDataURL(input.files[0]);
+
+    		}
+
+   	 };
+
+   	 $("#imgInp").change(function() {
+    	    readURL(this);
+   	 });
+    </script>
+
+
+
+    <br />
+    <button id="oracle3">oracle</button>
+    <br />
+    <input id="ans3" type='text' disabled="disabled" value="(3)여기에 예측값이 나옵니다.">
+
+    <br />
+    <br />
+    <br />
+
+
+
+
+
+</body>
+</html>
