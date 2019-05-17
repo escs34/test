@@ -1,0 +1,84 @@
+h1{
+	margin: 20px auto 0;
+	font-size: 20px;
+	font-weight: 700;
+	text-align: center;
+	}
+.search input[type=text]{
+	float: center;
+    padding: 6px;
+
+    margin: 20px;
+    margin-right: 16px;
+    font-size: 17px;
+ 
+
+
+}
+.youtube{
+	box-sizing: border-box;
+	margin: 30px auto;
+	padding: 80px;
+	width: 700px;
+	border: 1px solid #ddd;
+	background: #f5f5f5;
+	font-family: 'Roboto';
+	font-size: 14px;
+	overflow: hidden;}
+
+.youtube-selected{
+		box-sizing: border-box;
+		float: left;
+		padding-right: 15px;
+		width: 50%;}
+
+		iframe{
+			display: block;
+			width: 100%;
+			height: 80%;}
+
+		.video-title{
+			box-sizing: border-box;
+			padding: 30px 15px;
+			height: 75px;
+			background: #fff;}
+.youtube-list{
+		box-sizing: border-box;
+		float: right;
+		padding: 10px;
+		width: 50%;
+		height: 225px;
+		background: #fff;}
+		
+		li{
+			box-sizing: border-box;
+			margin-top: 9px;
+			border: 1px solid #ddd;
+			height: 60px;
+			overflow: hidden;}
+			&：first-child{
+				margin-top:0;
+			}
+			.thumb{
+				float: left;
+				width: 100px;
+				height: 100%;
+			}
+			.tittle{
+				box-sizing: border-box;
+				display: table;
+				padding: 10px;
+				overflow: hidden;
+			}
+			.outer{
+					display: table-cell;
+					vertical-align: middle;}
+		
+					.inner{
+						display: block;
+						line-height: 20px;
+						max-height: 40px;
+						word-break: break-all;
+						overflow: hidden;}
+				
+

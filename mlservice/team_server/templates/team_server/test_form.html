@@ -1,0 +1,26 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+    </head>
+    <body>
+        <div id="result"></div>
+            <input type="text" id="msg" />    
+            <input type="submit" value="get result" id="getResult" />
+
+        <script>
+            $('#getResult').click( function() {
+                $.ajax({
+                    url:'/team_server/video_face_analysis/',
+                    dataType:'json',
+                    type:'POST',
+                    data:{'msg':$('#msg').val()},
+                    success:function(result){
+                        $('#result').text(result['msg']);
+                    }
+                });
+            })
+        </script>
+
+    </body>
+</html>
