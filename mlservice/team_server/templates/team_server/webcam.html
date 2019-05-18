@@ -10,6 +10,9 @@
 </head>
 <body>
 <script>
+
+
+
 function requestVideo() {
     var video = document.querySelector("#video2");
     if (navigator.mediaDevices.getUserMedia) {
@@ -27,14 +30,21 @@ function requestVideo() {
       });
     }
 }
+
+
 function stopRecording() {
   recorder.ondataavailable = e => {
     ul.style.display = 'block';
     var a = document.createElement('a'),
+
+
       li = document.createElement('li');
 //    a.download = ['video_', (new Date() + '').slice(4, 28), '.webm'].join('');
-    a.download = ['test.mp4'].join('');
+    a.download = ['test.webm'].join('');
+
+
     a.href = URL.createObjectURL(e.data);
+    console.log(a.href);
     test = URL.createObjectURL(e.data);
     a.textContent = a.download;
     li.appendChild(a);
@@ -46,21 +56,23 @@ function stopRecording() {
   recorder.stop();
   console.log("recoding stop");
 }
+
+
+
 function uploadBlob(blob) {
     var form = new FormData();
     form.append("video", blob);
     console.log(blob);
     console.log(form);
 
-
     $.ajax({
         url: "/team_server/sending/",
             type: 'POST',
-                    data:{'msg':form},
+                    data: form,//blob,
 
-        dataType: 'json',
             processData: false,
-            contentType: false,
+            //contentType: false,
+            contentType: "multipart/form-data",
         success: function(response) {
             //alert('Successfully uploaded.');
             alert('4');

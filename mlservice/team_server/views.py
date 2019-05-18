@@ -66,21 +66,25 @@ def webcam(request):
 
 @csrf_exempt
 def sending(request):
-    if request.method == 'POST': # If the form has been submitted
-        print(request.POST)
-        '''
-        form = ContactForm(request.POST) # A form bound to the POST data
-        if form.is_valid(): # All validation rules pass
-            # Process the data in form.cleaned_data
-            # 
+    if request.method == 'POST':
+        #print(request.body)
+        #request.FILES['answer']
+        #print(request.body[0])
+        #print(request.POST)
+        #print(request.FILES)
+        #print(request.FILES['video'])
 
-            print (form.cleaned_data['video'])
+        print(type(request.body))
 
-        else:
-            print("here1")
-        '''
-    else:
-        print("here2")
+        import pickle
+
+
+        # save
+        with open('data.pickle', 'wb') as f:
+            pickle.dump(request.body, f, pickle.HIGHEST_PROTOCOL)
+
+
+
     context = {}#return format : {'pred_str':pred_str}
     return HttpResponse(json.dumps(context), "application/json")
 
